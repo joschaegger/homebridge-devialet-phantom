@@ -74,23 +74,14 @@
         "maximum": 25,
         "description": "Increment used by the Remote widget up/down buttons."
       },
-      "hideSources": {
-        "title": "Hide sources",
+      "sources": {
+        "title": "Sources to show",
         "type": "array",
         "uniqueItems": true,
-        "description": "Tick a source to hide it from Apple Home. Leave all unticked to show every source.",
+        "description": "Tick the sources you want to see in Apple Home. Leave all unticked to show every source.",
         "items": {
           "type": "string",
           "enum": ["airplay2", "optical", "bluetooth", "spotifyconnect", "raat", "upnp"]
-        }
-      },
-      "sources": {
-        "title": "Source whitelist (advanced)",
-        "type": "array",
-        "description": "Advanced: show ONLY these sources. List 'type' values or sourceId UUIDs. Leave empty to show all (then use Hide sources instead).",
-        "items": {
-          "type": "string",
-          "title": "type or sourceId"
         }
       }
     }
@@ -105,7 +96,7 @@
       "expanded": true,
       "items": [
         {
-          "key": "hideSources",
+          "key": "sources",
           "type": "checkboxes",
           "titleMap": [
             { "value": "airplay2", "name": "AirPlay" },
@@ -130,7 +121,7 @@
       "title": "Advanced",
       "expandable": true,
       "expanded": false,
-      "items": ["port", "pollInterval", "sources"]
+      "items": ["port", "pollInterval"]
     }
   ]
 }

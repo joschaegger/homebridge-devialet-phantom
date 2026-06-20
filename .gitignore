@@ -5,3 +5,7 @@ npm-debug.log*
 dist/
 coverage/
 .vscode/
+
+# Local-only (never publish)
+api-discovery.md
+SPEC-*.md

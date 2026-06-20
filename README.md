@@ -59,7 +59,7 @@ Configure it in the Homebridge UI, or add a platform block to `config.json`:
     {
       "platform": "DevialetPhantom",
       "name": "Phantom",
-      "ip": "192.168.2.147",
+      "ip": "192.168.1.50",
       "pollInterval": 7,
       "maxVolume": 60,
       "defaultVolume": 35,
@@ -85,13 +85,11 @@ top-level `ip`.
 | `restoreVolumeOnSourceSwitch` | bool | true | Counter the firmware reset-to-35 |
 | `exposeVolumeAsLightbulb` | bool | false | Percentage slider in Apple Home |
 | `volumeStep` | int | 2 | Step for the Remote widget up/down |
-| `hideSources` | string[] | none | Source `type` values to hide from Apple Home (e.g. `["raat"]` to hide Roon) |
-| `sources` | string[] | all | Advanced: show ONLY these `type`/`sourceId` values |
+| `sources` | string[] | all | Sources to show (whitelist of `type`/`sourceId`) |
 
-In the Homebridge UI, **hideSources** appears under "Sources" as a checkbox list -
-just tick the ones you want hidden (e.g. Roon). Leaving everything unticked shows
-all sources. `sources` (whitelist) is the inverse and lives under "Advanced"; use
-one or the other.
+In the Homebridge UI, **Sources to show** appears as a checkbox list - tick the
+sources you want visible in Apple Home (AirPlay, Optisch, Bluetooth, Spotify
+Connect, Roon, UPnP / DLNA). Leave everything unticked to show all sources.
 
 ## Safety: volume cap
 
@@ -151,9 +149,6 @@ directly in the Home app.
   appear in Apple Home within one interval.
 - Network errors are handled gracefully: an offline speaker marks the accessory
   inactive and the plugin keeps polling without crashing.
-
-See [`api-discovery.md`](api-discovery.md) for the raw API responses this plugin
-was built against.
 
 ## Development
 

@@ -70,8 +70,10 @@ class DevialetPlatform {
         DEFAULTS.exposeVolumeAsLightbulb
       ),
       volumeStep: clampInt(device.volumeStep, 1, 25, DEFAULTS.volumeStep),
-      sources: Array.isArray(device.sources) ? device.sources : null,
-      hideSources: Array.isArray(device.hideSources) ? device.hideSources : null,
+      sources:
+        Array.isArray(device.sources) && device.sources.length > 0
+          ? device.sources
+          : null,
     };
   }
 
@@ -114,24 +116,12 @@ class DevialetPlatform {
     let sources = info.sources;
     if (device.sources) {
       const whitelist = new Set(device.sources);
-      sources = sources.filter(
-        (s) => whitelist.has(s.type) || whitelist.has(s.sourceId)
-      );
-      if (sources.length === 0) {
-        this.log.warn(
-          `[${device.name}] Source whitelist matched nothing; using all sources.`
-        );
-        sources = info.sources;
-      }
-    }
-    if (device.hideSources && device.hideSources.length > 0) {
-      const blocked = new Set(device.hideSources);
       const filtered = sources.filter(
-        (s) => !blocked.has(s.type) && !blocked.has(s.sourceId)
+        (s) => whitelist.has(s.type) || whitelist.has(s.sourceId)
       );
       if (filtered.length === 0) {
         this.log.warn(
-          `[${device.name}] hideSources would remove every source; ignoring it.`
+          `[${device.name}] Source whitelist matched nothing; showing all sources.`
         );
       } else {
         sources = filtered;
