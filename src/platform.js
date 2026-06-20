@@ -128,7 +128,9 @@ class DevialetPlatform {
       }
     }
 
-    const uuid = this.api.hap.uuid.generate(`devialet-${device.ip}`);
+    // Seed includes the name so renaming the accessory yields a fresh HomeKit
+    // identity. Useful when a removed Television accessory will not re-pair.
+    const uuid = this.api.hap.uuid.generate(`devialet-${device.ip}-${device.name}`);
     const accessory = new this.api.platformAccessory(
       device.name,
       uuid,
