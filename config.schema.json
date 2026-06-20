@@ -1,0 +1,106 @@
+{
+  "pluginAlias": "DevialetPhantom",
+  "pluginType": "platform",
+  "singular": false,
+  "headerDisplay": "Controls a Devialet Phantom over its local HTTP IP Control API (DOS 2.14+). Exposes the speaker in Apple Home as a Television accessory with selectable sources and volume.",
+  "footerDisplay": "Volume is hard-clamped to **maxVolume** before being sent to the speaker. The Phantom gets very loud; keep this conservative.",
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "default": "Phantom",
+        "required": true,
+        "description": "Accessory name shown in Apple Home."
+      },
+      "ip": {
+        "title": "Speaker IP",
+        "type": "string",
+        "format": "ipv4",
+        "required": true,
+        "placeholder": "192.168.1.50",
+        "description": "Static IP of the Phantom (use a DHCP reservation)."
+      },
+      "port": {
+        "title": "Port",
+        "type": "integer",
+        "default": 80,
+        "minimum": 1,
+        "maximum": 65535,
+        "description": "HTTP port of the IP Control API (default 80)."
+      },
+      "pollInterval": {
+        "title": "Poll interval (seconds)",
+        "type": "integer",
+        "default": 7,
+        "minimum": 2,
+        "maximum": 120,
+        "description": "How often to read source/volume/play state from the speaker."
+      },
+      "maxVolume": {
+        "title": "Max volume (safety cap)",
+        "type": "integer",
+        "default": 60,
+        "minimum": 1,
+        "maximum": 100,
+        "description": "All volume values are hard-clamped to this before being sent. Keep conservative."
+      },
+      "defaultVolume": {
+        "title": "Default volume",
+        "type": "integer",
+        "default": 35,
+        "minimum": 0,
+        "maximum": 100,
+        "description": "Volume to apply after a source switch / power-on when no last value is known."
+      },
+      "restoreVolumeOnSourceSwitch": {
+        "title": "Restore volume on source switch",
+        "type": "boolean",
+        "default": true,
+        "description": "The firmware resets volume to a fixed default on source switch. Re-apply the last known volume afterwards."
+      },
+      "exposeVolumeAsLightbulb": {
+        "title": "Expose volume as a slider (Lightbulb)",
+        "type": "boolean",
+        "default": false,
+        "description": "Adds a Lightbulb whose brightness is the volume, giving a true percentage slider in Apple Home."
+      },
+      "volumeStep": {
+        "title": "Volume step",
+        "type": "integer",
+        "default": 2,
+        "minimum": 1,
+        "maximum": 25,
+        "description": "Increment used by the Remote widget up/down buttons."
+      },
+      "sources": {
+        "title": "Source whitelist (optional)",
+        "type": "array",
+        "description": "Optional list of source 'type' values or sourceId UUIDs to expose. Leave empty to expose all.",
+        "items": {
+          "type": "string",
+          "title": "type or sourceId"
+        }
+      }
+    }
+  },
+  "layout": [
+    "name",
+    "ip",
+    {
+      "type": "fieldset",
+      "title": "Volume",
+      "expandable": true,
+      "expanded": true,
+      "items": ["maxVolume", "defaultVolume", "restoreVolumeOnSourceSwitch", "exposeVolumeAsLightbulb", "volumeStep"]
+    },
+    {
+      "type": "fieldset",
+      "title": "Advanced",
+      "expandable": true,
+      "expanded": false,
+      "items": ["port", "pollInterval", "sources"]
+    }
+  ]
+}

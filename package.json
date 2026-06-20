@@ -1,0 +1,41 @@
+{
+  "name": "homebridge-devialet-phantom",
+  "displayName": "Devialet Phantom",
+  "version": "0.1.0",
+  "description": "Homebridge plugin that controls a Devialet Phantom (I/II, single or stereo pair) via its local HTTP IP Control API and exposes it in Apple Home as a Television accessory.",
+  "license": "MIT",
+  "type": "commonjs",
+  "main": "src/index.js",
+  "engines": {
+    "node": ">=18.0.0",
+    "homebridge": ">=1.6.0 || ^2.0.0-beta.0"
+  },
+  "files": [
+    "src",
+    "config.schema.json",
+    "README.md",
+    "api-discovery.md"
+  ],
+  "scripts": {
+    "lint": "node --check src/index.js && node --check src/platform.js && node --check src/platformAccessory.js && node --check src/devialetClient.js && node --check src/settings.js",
+    "test": "node test/devialetClient.test.js"
+  },
+  "keywords": [
+    "homebridge-plugin",
+    "devialet",
+    "phantom",
+    "airplay",
+    "homekit",
+    "television"
+  ],
+  "dependencies": {},
+  "devDependencies": {},
+  "homepage": "https://github.com/REPLACE_ME/homebridge-devialet-phantom#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/REPLACE_ME/homebridge-devialet-phantom.git"
+  },
+  "bugs": {
+    "url": "https://github.com/REPLACE_ME/homebridge-devialet-phantom/issues"
+  }
+}
