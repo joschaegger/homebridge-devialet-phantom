@@ -36,7 +36,7 @@ This must return JSON. If it does not, the firmware is too old or the IP is wron
 On the machine running Homebridge:
 
 ```sh
-sudo npm install -g git+https://github.com/REPLACE_ME/homebridge-devialet-phantom.git
+sudo npm install -g git+https://github.com/joschaegger/homebridge-devialet-phantom.git
 sudo hb-service restart   # or: sudo systemctl restart homebridge
 ```
 

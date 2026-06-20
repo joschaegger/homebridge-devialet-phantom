@@ -30,12 +30,12 @@
   ],
   "dependencies": {},
   "devDependencies": {},
-  "homepage": "https://github.com/REPLACE_ME/homebridge-devialet-phantom#readme",
+  "homepage": "https://github.com/joschaegger/homebridge-devialet-phantom#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/REPLACE_ME/homebridge-devialet-phantom.git"
+    "url": "git+https://github.com/joschaegger/homebridge-devialet-phantom.git"
   },
   "bugs": {
-    "url": "https://github.com/REPLACE_ME/homebridge-devialet-phantom/issues"
+    "url": "https://github.com/joschaegger/homebridge-devialet-phantom/issues"
   }
 }
