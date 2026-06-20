@@ -1,7 +1,7 @@
 {
   "name": "homebridge-devialet-phantom",
   "displayName": "Devialet Phantom",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Homebridge plugin that controls a Devialet Phantom (I/II, single or stereo pair) via its local HTTP IP Control API and exposes it in Apple Home as a Television accessory.",
   "license": "MIT",
   "type": "commonjs",

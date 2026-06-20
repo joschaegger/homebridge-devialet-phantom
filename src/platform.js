@@ -71,6 +71,7 @@ class DevialetPlatform {
       ),
       volumeStep: clampInt(device.volumeStep, 1, 25, DEFAULTS.volumeStep),
       sources: Array.isArray(device.sources) ? device.sources : null,
+      hideSources: Array.isArray(device.hideSources) ? device.hideSources : null,
     };
   }
 
@@ -121,6 +122,19 @@ class DevialetPlatform {
           `[${device.name}] Source whitelist matched nothing; using all sources.`
         );
         sources = info.sources;
+      }
+    }
+    if (device.hideSources && device.hideSources.length > 0) {
+      const blocked = new Set(device.hideSources);
+      const filtered = sources.filter(
+        (s) => !blocked.has(s.type) && !blocked.has(s.sourceId)
+      );
+      if (filtered.length === 0) {
+        this.log.warn(
+          `[${device.name}] hideSources would remove every source; ignoring it.`
+        );
+      } else {
+        sources = filtered;
       }
     }
 

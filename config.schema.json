@@ -74,10 +74,20 @@
         "maximum": 25,
         "description": "Increment used by the Remote widget up/down buttons."
       },
-      "sources": {
-        "title": "Source whitelist (optional)",
+      "hideSources": {
+        "title": "Hide sources",
         "type": "array",
-        "description": "Optional list of source 'type' values or sourceId UUIDs to expose. Leave empty to expose all.",
+        "uniqueItems": true,
+        "description": "Tick a source to hide it from Apple Home. Leave all unticked to show every source.",
+        "items": {
+          "type": "string",
+          "enum": ["airplay2", "optical", "bluetooth", "spotifyconnect", "raat", "upnp"]
+        }
+      },
+      "sources": {
+        "title": "Source whitelist (advanced)",
+        "type": "array",
+        "description": "Advanced: show ONLY these sources. List 'type' values or sourceId UUIDs. Leave empty to show all (then use Hide sources instead).",
         "items": {
           "type": "string",
           "title": "type or sourceId"
@@ -88,6 +98,26 @@
   "layout": [
     "name",
     "ip",
+    {
+      "type": "fieldset",
+      "title": "Sources",
+      "expandable": true,
+      "expanded": true,
+      "items": [
+        {
+          "key": "hideSources",
+          "type": "checkboxes",
+          "titleMap": [
+            { "value": "airplay2", "name": "AirPlay" },
+            { "value": "optical", "name": "Optisch" },
+            { "value": "bluetooth", "name": "Bluetooth" },
+            { "value": "spotifyconnect", "name": "Spotify Connect" },
+            { "value": "raat", "name": "Roon" },
+            { "value": "upnp", "name": "UPnP / DLNA" }
+          ]
+        }
+      ]
+    },
     {
       "type": "fieldset",
       "title": "Volume",

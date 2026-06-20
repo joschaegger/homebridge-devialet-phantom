@@ -85,7 +85,13 @@ top-level `ip`.
 | `restoreVolumeOnSourceSwitch` | bool | true | Counter the firmware reset-to-35 |
 | `exposeVolumeAsLightbulb` | bool | false | Percentage slider in Apple Home |
 | `volumeStep` | int | 2 | Step for the Remote widget up/down |
-| `sources` | string[] | all | Optional whitelist of `type` or `sourceId` |
+| `hideSources` | string[] | none | Source `type` values to hide from Apple Home (e.g. `["raat"]` to hide Roon) |
+| `sources` | string[] | all | Advanced: show ONLY these `type`/`sourceId` values |
+
+In the Homebridge UI, **hideSources** appears under "Sources" as a checkbox list -
+just tick the ones you want hidden (e.g. Roon). Leaving everything unticked shows
+all sources. `sources` (whitelist) is the inverse and lives under "Advanced"; use
+one or the other.
 
 ## Safety: volume cap
 
